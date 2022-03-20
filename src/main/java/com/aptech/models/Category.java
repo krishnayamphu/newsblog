@@ -3,16 +3,16 @@ package com.aptech.models;
 public class Category {
     int id;
     String name;
-    String cratedAt;
+    String createdAt;
     String updatedAt;
 
     public Category() {
     }
 
-    public Category(int id, String name, String cratedAt, String updatedAt) {
+    public Category(int id, String name, String createdAt, String updatedAt) {
         this.id = id;
         this.name = name;
-        this.cratedAt = cratedAt;
+        this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
@@ -32,12 +32,12 @@ public class Category {
         this.name = name;
     }
 
-    public String getCratedAt() {
-        return cratedAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCratedAt(String cratedAt) {
-        this.cratedAt = cratedAt;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getUpdatedAt() {

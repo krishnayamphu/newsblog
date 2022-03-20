@@ -30,6 +30,26 @@ public class CategoryDao {
         }
         return categories;
     }
+    public static Category getCategoryById(int id){
+    Category category=new Category();
+        try {
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT * FROM category WHERE id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet result=ps.executeQuery();
+            while(result.next()){
+                category.setId(result.getInt("id"));
+                category.setName(result.getString("name"));
+                category.setCreatedAt(result.getString("created_at"));
+                category.setUpdatedAt(result.getString("updated_at"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return category;
+    }
     public static boolean store(Category category) {
         boolean status = false;
         try {
@@ -39,6 +59,24 @@ public class CategoryDao {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, category.getName());
             ps.setString(2, timeStamp);
+            if (ps.executeUpdate() == 0) {
+                status = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+    public static boolean update(Category category) {
+        boolean status = false;
+        try {
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
+            Connection con = ConnectDB.connect();
+            String sql = "UPDATE category SET name=?, updated_at=? WHERE id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, category.getName());
+            ps.setString(2, timeStamp);
+            ps.setInt(3,category.getId());
             if (ps.executeUpdate() == 0) {
                 status = true;
             }
