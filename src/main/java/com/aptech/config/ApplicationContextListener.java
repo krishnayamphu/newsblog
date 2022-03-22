@@ -1,6 +1,7 @@
 package com.aptech.config;
 
 import com.aptech.database.tables.CategoryTable;
+import com.aptech.database.tables.PostsTable;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -12,6 +13,7 @@ public class ApplicationContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("application started");
 //        CategoryTable.create();
+//        PostsTable.create();
     }
 
     @Override

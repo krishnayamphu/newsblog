@@ -14,13 +14,15 @@
         <th>ID</th>
         <th>Name</th>
         <th>Created Date</th>
+        <th>Updated Date</th>
         <th>Action</th>
     </tr>
-    <c:forEach var="category" items="${categories}" varStatus="i">
+    <c:forEach var="category" items="${categories}">
     <tr>
         <td> ${category.id}</td>
         <td> ${category.name}</td>
         <td> ${category.createdAt}</td>
+        <td> ${category.updatedAt}</td>
         <td>
             <a href="category-edit?id=${category.id}">edit</a>
             <form action="category" method="post">
