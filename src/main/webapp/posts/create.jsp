@@ -8,23 +8,23 @@
 <body>
 
 <h4>Create new Post</h4>
-<form action="post-create" method="post">
+<form action="post-create" method="post" enctype="multipart/form-data">
     <label>Title</label>
     <input type="text" name="title">
     <br><br>
     <label>Content</label>
     <textarea name="content" cols="30" rows="10"></textarea>
     <br><br>
-    <label>Image</label>
-    <input type="text" name="image">
-    <br><br>
     <label>Category</label>
-    <select name="category" >
-        <option> select category</option>
+    <select name="category">
+        <option value="">select category</option>
         <c:forEach var="category" items="${categories}">
-            <option value="${category.getId()}"> ${category.getName()}</option>
+            <option value="${category.getId()}">${category.getName()}</option>
         </c:forEach>
     </select>
+    <br><br>
+    <label>Image</label>
+    <input type="file" name="upfile">
     <br><br>
     <button type="submit">Create</button>
 </form>

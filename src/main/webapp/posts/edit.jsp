@@ -23,7 +23,11 @@
     <select name="category">
         <option>select category</option>
         <c:forEach var="category" items="${categories}">
-            <option value="${category.getId()}"> ${category.getName()}</option>
+            <option value="${category.getId()}"
+                    ${category.getId()==post.categoryId?'selected':''}
+            >
+                    ${category.getName()}
+            </option>
         </c:forEach>
     </select>
     <br><br>
