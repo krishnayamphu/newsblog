@@ -1,5 +1,7 @@
 package com.aptech.models;
 
+import com.aptech.dao.CategoryDao;
+
 public class Post {
     private int id;
     private String title;
@@ -76,5 +78,10 @@ public class Post {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+    public String getCategory(){
+      Category category= CategoryDao.getCategoryById(categoryId);
+      String name=category.getName();
+      return name;
     }
 }

@@ -10,13 +10,13 @@
 <h4>Create new Post</h4>
 <form action="post-create" method="post" enctype="multipart/form-data">
     <label>Title</label>
-    <input type="text" name="title">
+    <input type="text" name="title" required>
     <br><br>
     <label>Content</label>
     <textarea name="content" cols="30" rows="10"></textarea>
     <br><br>
     <label>Category</label>
-    <select name="category">
+    <select name="category" required>
         <option value="">select category</option>
         <c:forEach var="category" items="${categories}">
             <option value="${category.getId()}">${category.getName()}</option>

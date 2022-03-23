@@ -8,20 +8,26 @@
 <body>
 
 <h4>Post Details</h4>
-<form action="post-edit" method="post">
+<form action="post-edit" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="${post.id}">
     <label>Title</label>
-    <input type="text" name="title" value="${post.title}">
+    <input type="text" name="title" value="${post.title}" required>
     <br><br>
     <label>Content</label>
     <textarea name="content" cols="30" rows="10">${post.content}</textarea>
     <br><br>
     <label>Image</label>
-    <input type="text" name="image" value="${post.imagePath}">
+    <c:choose>
+        <c:when test="${not empty post.imagePath}">
+            <img src="uploads/${post.imagePath}" width="100">
+            <input type="text" name="image" value="${post.imagePath}" readonly>
+        </c:when>
+    </c:choose>
+    <input type="file" name="upfile">
     <br><br>
     <label>Category</label>
-    <select name="category">
-        <option>select category</option>
+    <select name="category" required>
+        <option value="">select category</option>
         <c:forEach var="category" items="${categories}">
             <option value="${category.getId()}"
                     ${category.getId()==post.categoryId?'selected':''}
