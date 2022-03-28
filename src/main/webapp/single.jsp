@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="css/all.css">
-    <title>Home | NewsBlog</title>
+    <title>${post.title}</title>
 </head>
 <body>
 <header>
@@ -16,16 +17,12 @@
     <a href="contact">Contact</a>
 </nav>
 <div class="container">
-    <div class="row">
-        <c:forEach var="post" items="${posts}">
-            <div class="col">
-                <div class="card">
-                    <h3 class="post-title"><a href="news?id=${post.id}">${post.title}</a></h3>
-                    <a href="news?id=${post.id}"><img src="uploads/${post.imagePath}" class="post-thumb"></a>
-                </div>
-            </div>
-        </c:forEach>
+    <div class="card">
+        <h1>${post.title}</h1>
+        <img class="full-img" src="uploads/${post.imagePath}">
+        <p>${post.content}</p>
     </div>
+
 </div>
 </body>
 </html>
