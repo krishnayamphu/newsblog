@@ -45,3 +45,22 @@ nav a{
     width: 100%;
     margin: 15px 0;
 }
+
+.contact-form{
+    width: 600px;
+    margin: 15px auto;
+}
+.contact-form label, .contact-form input, .contact-form textarea{
+    display: block;
+    margin: 15px;
+    width: 100%;
+}
+.contact-form input{
+    height: 30px;
+    padding: 5px;
+}
+.contact-form button{
+    padding: 15px 30px;
+}
+
+
