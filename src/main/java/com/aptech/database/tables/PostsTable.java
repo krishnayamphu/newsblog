@@ -14,7 +14,6 @@ public class PostsTable {
              if(ps.executeUpdate()==0){
                  System.out.println("Posts table created");
              }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

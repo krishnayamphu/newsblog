@@ -18,6 +18,7 @@ public class ApplicationContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-
+//        CategoryTable.drop();
+//        PostsTable.drop();
     }
 }

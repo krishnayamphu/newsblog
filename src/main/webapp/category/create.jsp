@@ -10,7 +10,10 @@
 <form action="category-create" method="post">
     <label>Name</label>
     <input type="text" name="name">
-    <br>
+    <br><br>
+    <label>Description</label>
+    <textarea name="description" cols="30" rows="10"></textarea>
+    <br><br>
     <button type="submit">Create</button>
 </form>
 

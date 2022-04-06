@@ -9,7 +9,7 @@ public class CategoryTable {
     public static void create(){
          try {
              Connection con= ConnectDB.connect();
-             String sql = "CREATE TABLE category (id int primary key auto_increment,name varchar(50) unique,created_at timestamp null,updated_at timestamp null)";
+             String sql = "CREATE TABLE category (id int primary key auto_increment,name varchar(50) unique,description varchar(256) null,created_at timestamp null,updated_at timestamp null)";
              PreparedStatement ps = con.prepareStatement(sql);
              if(ps.executeUpdate()==0){
                  System.out.println("Category table crated");

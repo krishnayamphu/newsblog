@@ -22,7 +22,7 @@ public class CategoryDao {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet result = ps.executeQuery();
             while (result.next()) {
-                Category category = new Category(result.getInt("id"), result.getString("name"), result.getString("created_at"), result.getString("updated_at"));
+                Category category = new Category(result.getInt("id"), result.getString("name"),result.getString("descritption"), result.getString("created_at"), result.getString("updated_at"));
                 categories.add(category);
             }
         } catch (SQLException e) {
@@ -56,10 +56,11 @@ public class CategoryDao {
         try {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
             Connection con = ConnectDB.connect();
-            String sql = "INSERT INTO category (name,created_at) values (?,?)";
+            String sql = "INSERT INTO category (name,description,created_at) values (?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, category.getName());
-            ps.setString(2, timeStamp);
+            ps.setString(2, category.getDescription());
+            ps.setString(3, timeStamp);
             if (ps.executeUpdate() == 0) {
                 status = true;
             }

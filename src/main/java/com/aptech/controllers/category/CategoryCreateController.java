@@ -20,8 +20,10 @@ public class CategoryCreateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name=request.getParameter("name");
+        String desc=request.getParameter("description");
         Category category=new Category();
         category.setName(name);
+        category.setDescription(desc);
         CategoryDao.store(category);
         response.sendRedirect("category");
     }
