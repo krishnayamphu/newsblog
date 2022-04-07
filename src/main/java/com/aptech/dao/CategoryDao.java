@@ -13,16 +13,16 @@ import java.util.Date;
 import java.util.List;
 
 public class CategoryDao {
+    /** show all category */
     public static List<Category> all() {
         List<Category> categories = new ArrayList<>();
         try {
-            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
             Connection con = ConnectDB.connect();
             String sql = "SELECT * FROM category";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet result = ps.executeQuery();
             while (result.next()) {
-                Category category = new Category(result.getInt("id"), result.getString("name"),result.getString("descritption"), result.getString("created_at"), result.getString("updated_at"));
+                Category category = new Category(result.getInt("id"), result.getString("name"),result.getString("description"), result.getString("created_at"), result.getString("updated_at"));
                 categories.add(category);
             }
         } catch (SQLException e) {
@@ -31,6 +31,7 @@ public class CategoryDao {
         return categories;
     }
 
+    /** get category by id */
     public static Category getCategoryById(int id) {
         Category category = new Category();
         try {
@@ -42,6 +43,7 @@ public class CategoryDao {
             while (result.next()) {
                 category.setId(result.getInt("id"));
                 category.setName(result.getString("name"));
+                category.setDescription(result.getString("description"));
                 category.setCreatedAt(result.getString("created_at"));
                 category.setUpdatedAt(result.getString("updated_at"));
             }
@@ -51,6 +53,7 @@ public class CategoryDao {
         return category;
     }
 
+    /** store category */
     public static boolean store(Category category) {
         boolean status = false;
         try {
@@ -70,16 +73,18 @@ public class CategoryDao {
         return status;
     }
 
+    /** update category by id */
     public static boolean update(Category category) {
         boolean status = false;
         try {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
             Connection con = ConnectDB.connect();
-            String sql = "UPDATE category SET name=?, updated_at=? WHERE id=?";
+            String sql = "UPDATE category SET name=?, description=?, updated_at=? WHERE id=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, category.getName());
-            ps.setString(2, timeStamp);
-            ps.setInt(3, category.getId());
+            ps.setString(2, category.getDescription());
+            ps.setString(3, timeStamp);
+            ps.setInt(4, category.getId());
             if (ps.executeUpdate() == 0) {
                 status = true;
             }
@@ -89,6 +94,7 @@ public class CategoryDao {
         return status;
     }
 
+    /** delete category by id */
     public static boolean delete(int id) {
         boolean status = false;
         try {

@@ -11,11 +11,9 @@ import java.util.List;
 
 public class AppTest {
     public static void main(String[] args) {
-       Post post=new Post();
-       post.setTitle("hello world");
-       post.setContent("testing content");
-       post.setImagePath("pic.jpg");
-       post.setCategoryId(1);
-        PostDao.store(post);
+     Category category=CategoryDao.getCategoryById(3);
+
+        System.out.println(category.getName());
+        System.out.println(category.getDescription());
     }
 }

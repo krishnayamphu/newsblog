@@ -24,9 +24,11 @@ public class CategoryEditController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id=Integer.parseInt(request.getParameter("id"));
         String name=request.getParameter("name");
+        String description=request.getParameter("description");
         Category category=new Category();
         category.setId(id);
         category.setName(name);
+        category.setDescription(description);
         CategoryDao.update(category);
         response.sendRedirect("category");
     }
