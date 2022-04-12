@@ -35,11 +35,13 @@
                 <td> ${post.createdAt}</td>
                 <td> ${post.updatedAt}</td>
                 <td>
-                    <a href="post-edit?id=${post.id}">edit</a>
-                    <form action="posts" method="post">
-                        <input type="hidden" name="id" value="${post.id}">
-                        <button type="submit">delete</button>
-                    </form>
+                    <div class="action-wrap">
+                        <a class="btn-primary" href="post-edit?id=${post.id}">edit</a>
+                        <form action="posts" method="post">
+                            <input type="hidden" name="id" value="${post.id}">
+                            <button class="btn-primary" type="submit">delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         </c:forEach>

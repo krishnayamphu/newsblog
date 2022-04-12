@@ -2,6 +2,7 @@ package com.aptech.config;
 
 import com.aptech.database.tables.CategoryTable;
 import com.aptech.database.tables.PostsTable;
+import com.aptech.database.tables.UserTable;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -17,8 +18,9 @@ public class ApplicationContextListener implements ServletContextListener {
         String path=context.getContextPath();
         context.setAttribute("path",path);
         System.out.println(path);
-//        CategoryTable.create();
-//        PostsTable.create();
+        UserTable.create();
+        CategoryTable.create();
+        PostsTable.create();
     }
 
     @Override

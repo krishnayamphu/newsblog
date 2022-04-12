@@ -1,8 +1,9 @@
 package com.aptech.dao;
 
 import com.aptech.database.util.ConnectDB;
-import com.aptech.models.Category;
 import com.aptech.models.Post;
+import com.aptech.models.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,25 +14,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PostDao {
-    public static List<Post> all() {
-        /** show all posts */
-        List<Post> posts = new ArrayList<>();
+public class UserDao {
+    public static List<User> all() {
+        /** show all users */
+        List<User> users = new ArrayList<>();
         try {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
             Connection con = ConnectDB.connect();
-            String sql = "SELECT * FROM posts";
+            String sql = "SELECT * FROM users";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet result = ps.executeQuery();
             while (result.next()) {
-                Post post = new Post(result.getInt("id"), result.getString("title"), result.getString("content"), result.getString("image_path"), result.getInt("category_id"), result.getString("created_at"), result.getString("updated_at"));
-                posts.add(post);
+                User user = new User(result.getInt("id"), result.getString("name"), result.getString("username"), result.getString("password"), result.getString("email"), result.getString("created_at"));
+                users.add(user);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return posts;
+        return users;
     }
+
     /** get post by id */
     public static Post getPostById(int id) {
         Post post = new Post();
@@ -56,18 +58,19 @@ public class PostDao {
         return post;
     }
 
-    /** store post */
-    public static boolean store(Post post) {
+    /** store user */
+    public static boolean store(User user) {
         boolean status = false;
         try {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss").format(new Date());
+            String hashPassword=new DigestUtils("SHA3-256").digestAsHex(user.getPassword());
             Connection con = ConnectDB.connect();
-            String sql = "INSERT INTO posts (title,content,image_path,category_id,created_at) values (?,?,?,?,?)";
+            String sql = "INSERT INTO users (name,username,password,email,created_at) values (?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, post.getTitle());
-            ps.setString(2, post.getContent());
-            ps.setString(3, post.getImagePath());
-            ps.setInt(4, post.getCategoryId());
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getUsername());
+            ps.setString(3, hashPassword);
+            ps.setString(4, user.getEmail());
             ps.setString(5, timeStamp);
             if (ps.executeUpdate() == 0) {
                 status = true;
@@ -111,6 +114,28 @@ public class PostDao {
             ps.setInt(1, id);
             if (ps.executeUpdate() == 1) {
                 status = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+
+    /** login */
+    public static boolean login(String username,String password) {
+        boolean status=false;
+        String hashPassword=new DigestUtils("SHA3-256").digestAsHex(password);
+
+        try {
+            Connection con = ConnectDB.connect();
+            String sql = "SELECT * FROM users WHERE username=? AND password=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2,hashPassword);
+            ResultSet result = ps.executeQuery();
+            while (result.next()) {
+                status=true;
             }
         } catch (SQLException e) {
             e.printStackTrace();

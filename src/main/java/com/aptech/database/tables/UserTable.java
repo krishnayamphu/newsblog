@@ -9,7 +9,7 @@ public class UserTable{
     public static void create(){
          try {
              Connection con= ConnectDB.connect();
-             String sql = "CREATE TABLE Users (id int primary key auto_increment,name varchar(50),username varchar(255) unique not null,password varchar(255), email varchar(255) unique not null, created_date timestamp null)";
+             String sql = "CREATE TABLE Users (id int primary key auto_increment,name varchar(50),username varchar(255) unique not null,password varchar(255), email varchar(255) unique not null, created_at timestamp null)";
              PreparedStatement ps = con.prepareStatement(sql);
              if(ps.executeUpdate()==0){
                  System.out.println("Users table crated");

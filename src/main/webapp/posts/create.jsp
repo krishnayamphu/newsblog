@@ -13,10 +13,10 @@
     <form action="post-create" method="post" enctype="multipart/form-data">
         <label>Title</label>
         <input type="text" name="title" required>
-        <br><br>
+
         <label>Content</label>
         <textarea name="content" cols="30" rows="10"></textarea>
-        <br><br>
+
         <label>Category</label>
         <select name="category" required>
             <option value="">select category</option>
@@ -27,7 +27,6 @@
         <br><br>
         <label>Image</label>
         <input type="file" name="upfile">
-        <br><br>
         <button type="submit">Create</button>
     </form>
 </div>
