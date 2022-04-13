@@ -8,9 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <form action="register" method="post">
+    <form class="register-form" action="register" method="post">
         <c:if test="${err!=null}">
-            <p>${err}</p>
+            <p class="msg-error">${err}</p>
         </c:if>
         <input type="text" name="name" placeholder="Fullname" required>
         <input type="text" name="username" placeholder="Username" required>
@@ -20,7 +20,7 @@
         <button type="submit">Register</button>
     </form>
 
-    <a href="register">Create new Account</a>
+    <a class="reg-link" href="login">Already have an account</a>
 </div>
 </body>
 </html>

@@ -81,3 +81,55 @@ nav ul li a{
     margin: 0 auto;
     width: calc(100% - 200px);
 }
+/* login-form */
+.login-form{
+    width: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: antiquewhite;
+}
+.login-form input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+.login-form button{
+    padding: 8px 30px;
+}
+.reg-link{
+    display: block;
+    text-align: center;
+    padding: 15px 0;
+    text-decoration: none;
+}
+.reg-link:hover{
+    text-decoration: underline;
+}
+
+/* register-form */
+.register-form{
+    width: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    background-color: antiquewhite;
+}
+.register-form input{
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+.register-form button{
+    padding: 8px 30px;
+}
+
+/* flash message */
+.msg-error{
+    color:darkred;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+.msg-success{
+    color:darkgreen;
+    padding: 5px;
+    margin-bottom: 15px;
+}

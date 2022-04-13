@@ -8,16 +8,16 @@
 </head>
 <body>
 <div class="container">
-    <form action="login" method="post">
+    <form class="login-form" action="login" method="post">
         <c:if test="${err!=null}">
-            <p>${err}</p>
+            <p class="msg-error">${err}</p>
         </c:if>
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
 
-    <a href="register">Create new Account</a>
+    <a class="reg-link" href="register">Create new Account</a>
 </div>
 </body>
 </html>
